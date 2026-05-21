@@ -1,4 +1,4 @@
-name: SAST Scan (CodeQL)
+name: SAST Scan
 
 on:
   push:
@@ -6,16 +6,17 @@ on:
   pull_request:
     branches: ["main"]
   schedule:
-    - cron: "0 3 * * 1"
+    - cron: "0 0 * * *"
 
 jobs:
-  analyze:
+  sast:
+    name: SAST Analysis
     runs-on: ubuntu-latest
 
     permissions:
-      actions: read
       contents: read
       security-events: write
+      actions: read
 
     steps:
       - name: Checkout repository
